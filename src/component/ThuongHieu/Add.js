@@ -15,6 +15,7 @@ const Add = () => {
             GioiThieu: gioiThieu
         };
         dispatch(createTH(obj))
+        alert("Thêm Thương hiệu thành công !")
         setTenThuongHieu("")
         setGioiThieu("")
     }
@@ -34,7 +35,7 @@ const Add = () => {
                         <div className="modal-body">
                             <form noValidate name="frmLoaiSP" id="frmLoaiSP" className="form-horizontal row-border">
                                 <div className="form-group row">
-                                    <label className="col-md-12 control-label" >Tên Loại Sản Phẩm : </label>
+                                    <label className="col-md-12 control-label" >Tên Thương hiệu : </label>
                                 </div>
                                 <div className="form-group row">
                                     <div className="col-md-12">

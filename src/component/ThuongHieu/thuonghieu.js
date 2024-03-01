@@ -3,15 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAllThuonghieu, deleteTH } from "../../redux/actions/thuonghieuAction";
 import Sidebar from "../../layout/sidebar";
 import Add from "./Add";
+import Update from "./update";
 const ThuongHieu = () => {
     const dispatch = useDispatch();
 
     const data = useSelector((state) => state.thuonghieu.ListThuongHieu)
+    const [dataEdit, setDataEdit] = useState({})
     //const [dataLoaispEdit, setDataLoaispEdit] = useState({})
     useEffect(() => {
         dispatch(fetchAllThuonghieu());
     }, []);
-
+    const hanleUpdate = (item) => {
+        setDataEdit(item);
+    }
     const Delete = (item) => {
         dispatch(deleteTH(item.MaThuongHieu))
     }
@@ -49,7 +53,7 @@ const ThuongHieu = () => {
                                                 <td className="w-100" colSpan="2">
                                                     <div className="btn-group" role="group">
                                                         <button type="button" className="btn btn-primary mx-1 btn-xs"
-
+                                                            onClick={() => hanleUpdate(item)}
                                                             data-toggle="modal" data-target="#exampleModal1">
                                                             <i className="fas fa-edit"></i>
                                                         </button>
@@ -67,6 +71,7 @@ const ThuongHieu = () => {
                         </div>
                     </div>
                     <Add />
+                    <Update dataEdit={dataEdit} />
                 </div>
             </div>
         </div>

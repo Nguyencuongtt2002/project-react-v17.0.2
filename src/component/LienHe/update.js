@@ -1,27 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateTH } from "../../redux/actions/thuonghieuAction";
-const Update = (props) => {
-    const { dataEdit } = props
+import { updateLoaisp } from "../../redux/actions/loaispAction";
+const Update = ({ dataEdit }) => {
     console.log(dataEdit)
     const dispatch = useDispatch();
-
-    const [tenThuongHieu, setTenThuongHieu] = useState("");
-    const [gioiThieu, setGioiThieu] = useState("");
-
+    const [email, setEmail] = useState("");
+    const [diaChi, setDiaChi] = useState("");
+    const [soDienThoai, setSoDienThoai] = useState("");
     useEffect(() => {
         if (dataEdit) {
-            setTenThuongHieu(dataEdit.TenThuongHieu || "");
-            setGioiThieu(dataEdit.GioiThieu || "");
+            setEmail(dataEdit.Email || "");
+            setDiaChi(dataEdit.DiaChi || "");
+            setSoDienThoai(dataEdit.SoDienThoai || "");
         }
     }, [dataEdit]);
     const handleEdit = () => {
         const obj = {
-            MaThuongHieu: dataEdit.MaThuongHieu,
-            TenThuongHieu: tenThuongHieu,
-            GioiThieu: gioiThieu
+
         };
-        dispatch(updateTH(obj));
+        dispatch(updateLoaisp(obj));
     };
 
     return (
@@ -30,7 +27,7 @@ const Update = (props) => {
                 <div className="modal-dialog" style={{ maxWidth: "600px" }}>
                     <div className="modal-content">
                         <div className="modal-header bg-primary text-white">
-                            <h5 className="modal-title">Loại Sản Phẩm</h5>
+                            <h5 className="modal-title">Liên hệ</h5>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -39,25 +36,37 @@ const Update = (props) => {
                         <div className="modal-body">
                             <form noValidate name="frmLoaiSP" id="frmLoaiSP" className="form-horizontal row-border">
                                 <div className="form-group row">
-                                    <label className="col-md-12 control-label">Tên Thương hiệu :</label>
+                                    <label className="col-md-12 control-label">Email :</label>
                                 </div>
                                 <div className="form-group row">
                                     <div className="col-md-12">
                                         <input type="text" id="idTenLoaiSanPham"
                                             className="form-control" name="TenLoaiSanPham"
-                                            value={tenThuongHieu}
-                                            onChange={(event) => setTenThuongHieu(event.target.value)} />
+                                            value={email}
+                                            onChange={(event) => setEmail(event.target.value)} />
                                     </div>
                                 </div>
                                 <div className="form-group row">
-                                    <label className="col-md-12 control-label">Giới thiệu :</label>
-                                    <textarea
-                                        id="idTenLoaiSanPham"
-                                        className="form-control"
-                                        style={{ height: "200px", resize: "none" }}
-                                        value={gioiThieu}
-                                        onChange={(event) => setGioiThieu(event.target.value)}
-                                    ></textarea>
+                                    <label className="col-md-12 control-label">Địa Chỉ :</label>
+                                </div>
+                                <div className="form-group row">
+                                    <div className="col-md-12">
+                                        <input type="text" id="idTenLoaiSanPham"
+                                            className="form-control" name="TenLoaiSanPham"
+                                            value={diaChi}
+                                            onChange={(event) => setDiaChi(event.target.value)} />
+                                    </div>
+                                </div>
+                                <div className="form-group row">
+                                    <label className="col-md-12 control-label">SDT :</label>
+                                </div>
+                                <div className="form-group row">
+                                    <div className="col-md-12">
+                                        <input type="text" id="idTenLoaiSanPham"
+                                            className="form-control" name="TenLoaiSanPham"
+                                            value={soDienThoai}
+                                            onChange={(event) => setSoDienThoai(event.target.value)} />
+                                    </div>
                                 </div>
 
                                 <div className="form-group row">
