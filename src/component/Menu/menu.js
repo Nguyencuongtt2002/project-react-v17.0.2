@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllLoaisp, deleteLoaisp } from "../../redux/actions/loaispAction";
+import { fetchAllMN, deleteMN } from "../../redux/actions/menuAction";
 import Sidebar from "../../layout/sidebar";
 import Add from "./Add";
 import Update from "./update";
-const Home = () => {
+const Menu = () => {
     const dispatch = useDispatch();
-    const data = useSelector((state) => state.loaisp.ListLoaisp)
-    const [dataLoaispEdit, setDataLoaispEdit] = useState({})
+    const data = useSelector((state) => state.menu.ListMenu)
+    const [dataEdit, setDataEdit] = useState({})
     useEffect(() => {
-        dispatch(fetchAllLoaisp());
+        dispatch(fetchAllMN());
     }, []);
 
     const Delete = (item) => {
-        dispatch(deleteLoaisp(item.MaLoaiSanPham))
+        dispatch(deleteMN(item.MaMenu))
     }
 
     const hanleUpdate = (item) => {
-        setDataLoaispEdit(item);
+        setDataEdit(item);
     }
 
 
@@ -31,19 +31,19 @@ const Home = () => {
                 <div className="col-10 pl-5 pr-2" style={{ backgroundColor: "#f1f2f6" }}>
                     <div className="content" style={{ width: "1200px" }}>
                         <div className="layout-page-customer">
-                            <h3 className="text-center mb-3 font-weight-bold" data-aos="flip-right">Danh sách loại sản phẩm</h3>
+                            <h3 className="text-center mb-3 font-weight-bold" data-aos="flip-right">Danh sách Menu</h3>
 
                             <p className="text-muted font-13 m-b-30">
                                 <button className="btn btn-primary fa fa-plus" data-toggle="modal" data-target="#exampleModal">Tạo mới</button>
                             </p>
-                            <p>Tổng có :{data.length} loại sản phẩm </p>
+                            <p>Tổng có :{data.length} Menu </p>
                             <table className="table table-bordered table-striped">
                                 <thead className="thead-dark">
                                     <tr className="text-center">
-                                        <th style={{ width: "10%" }}>Mã Loại</th>
-                                        <th style={{ width: "15%" }}>Tên Loại</th>
-                                        <th style={{ width: "65%" }}>Giới Thiệu</th>
-                                        <th colSpan="2">Thao tác</th>
+                                        <th style={{ width: "5%" }}>#</th>
+                                        <th style={{ width: "45%" }}>Tên Menu</th>
+                                        <th style={{ width: "45%" }}>Link</th>
+                                        <th style={{ width: "5%" }} colSpan="2">Thao tác</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -51,8 +51,8 @@ const Home = () => {
                                         data.map((item, index) => (
                                             <tr key={index} className="text-center">
                                                 <td>{index + 1}</td>
-                                                <td>{item.TenLoaiSanPham}</td>
-                                                <td>{item.GioiThieu}</td>
+                                                <td>{item.TenMenu}</td>
+                                                <td>{item.Link}</td>
                                                 <td className="w-100" colSpan="2">
                                                     <div className="btn-group" role="group">
                                                         <button type="button" className="btn btn-primary mx-1 btn-xs"
@@ -74,13 +74,11 @@ const Home = () => {
                         </div>
                     </div>
                     <Add />
-                    <Update
-                        dataLoaispEdit={dataLoaispEdit}
-                    />
+                    <Update dataEdit={dataEdit} />
                 </div>
             </div>
         </div>
     );
 }
 
-export default Home;
+export default Menu;

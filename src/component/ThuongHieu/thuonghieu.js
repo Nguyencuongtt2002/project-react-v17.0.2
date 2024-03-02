@@ -34,7 +34,7 @@ const ThuongHieu = () => {
                             <p className="text-muted font-13 m-b-30">
                                 <button className="btn btn-primary fa fa-plus" data-toggle="modal" data-target="#exampleModal">Tạo mới</button>
                             </p>
-                            <table className="table table-striped table-hover">
+                            <table className="table table-bordered table-striped">
                                 <thead className="thead-dark">
                                     <tr className="text-center">
                                         <th style={{ width: "10%" }}>#</th>

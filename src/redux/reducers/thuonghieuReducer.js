@@ -39,8 +39,6 @@ const thuonghieuReducer = (state = INITIAL_STATE, action) => {
                 })
             };
         case DELETE_THUONGHIEU_SUCCESS:
-            //console.log(action.data);
-            //console.log("tyu")
             return {
                 ...state,
                 ListThuongHieu: state.ListThuongHieu.filter(item => item.MaThuongHieu !== action.data.id)

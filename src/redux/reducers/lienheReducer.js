@@ -1,5 +1,5 @@
 import {
-    FETCH_LIENHE_REQUEST, FETCH_LIENHE_SUCCESS, FETCH_LIENHE_ERROR, CREATE_LIENHE_REQUEST,
+    FETCH_LIENHE_REQUEST, FETCH_LIENHE_SUCCESS, FETCH_LIENHE_ERROR, CREATE_LIENHE_SUCCESS,
     UPDATE_LIENHE_SUCCESS
 } from '../actions/lienheAction'
 const INITIAL_STATE = {
@@ -24,7 +24,7 @@ const lienheReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state
             };
-        case CREATE_LIENHE_REQUEST:
+        case CREATE_LIENHE_SUCCESS:
             return {
                 ...state, isCreating: false, ListLienHe: [...state.ListLienHe, action.data]
             };

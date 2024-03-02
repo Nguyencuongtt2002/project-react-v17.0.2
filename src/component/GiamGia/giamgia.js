@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllLH, deleteLH } from "../../redux/actions/lienheAction";
+import { fetchAllGG, deleteGG } from "../../redux/actions/giamgiaAction";
 import Sidebar from "../../layout/sidebar";
-import Add from "./Add";
 import Update from "./update";
 
-const LienHe = () => {
+const GiamGia = () => {
     const dispatch = useDispatch();
-    const data = useSelector((state) => state.lienhe.ListLienHe);
+    const data = useSelector((state) => state.giamgia.ListGiamGia);
     const [dataEdit, setDataEdit] = useState({});
     const [rowSelected, setRowSelected] = useState(false);
 
     useEffect(() => {
-        dispatch(fetchAllLH());
+        dispatch(fetchAllGG());
     }, []);
 
     const onRowClick = (item) => {
@@ -22,11 +21,11 @@ const LienHe = () => {
 
     const handleDelete = () => {
         if (!rowSelected) {
-            alert("Vui lòng chọn một hàng trước khi cập nhật!");
+            alert("Vui lòng chọn một hàng trước khi xóa!");
         } else {
-            const confirmDelete = window.confirm(`Bạn có chắc chắn muốn xóa Email:${dataEdit.Email} không?`);
+            const confirmDelete = window.confirm(`Bạn có chắc chắn muốn xóa giảm giá này không?`);
             if (confirmDelete) {
-                dispatch(deleteLH(dataEdit.MaLienHe));
+                dispatch(deleteGG(dataEdit.MaGiamGia));
             }
         }
     };
@@ -53,7 +52,7 @@ const LienHe = () => {
                 <div className="col-10 pl-5 pr-2" style={{ backgroundColor: "#f1f2f6" }}>
                     <div className="content" style={{ width: "1200px" }}>
                         <div className="layout-page-customer">
-                            <h3 className="text-center mb-3 font-weight-bold" data-aos="flip-right">Danh sách liên hệ</h3>
+                            <h3 className="text-center mb-3 font-weight-bold" data-aos="flip-right">Danh sách thông tin giảm giá</h3>
                             <p className="text-muted font-13 m-b-30">
                                 <button className="btn btn-primary fa fa-plus" data-toggle="modal" data-target="#exampleModal">Tạo mới</button>
                                 <button id="updateButton" className="btn btn-warning btn-sm ml-2" onClick={() => hanleUpdate()}>
@@ -67,10 +66,11 @@ const LienHe = () => {
                             <table className="table table-bordered table-striped">
                                 <thead className="thead-dark">
                                     <tr className="text-center">
-                                        <th style={{ width: '5%' }}>STT</th>
-                                        <th style={{ width: '15%' }}>Email</th>
-                                        <th style={{ width: '25%' }}>Địa Chỉ</th>
-                                        <th style={{ width: '15%' }}>Số Điện thoại</th>
+                                        <th style={{ width: '20%' }}>#</th>
+                                        <th style={{ width: '20%' }}>Tên SP</th>
+                                        <th style={{ width: '20%' }}>Phần trăm </th>
+                                        <th style={{ width: '20%' }}>Ngày BĐ</th>
+                                        <th style={{ width: '20%' }}>Ngày KT</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -78,9 +78,10 @@ const LienHe = () => {
                                         data.map((item, index) => (
                                             <tr onClick={() => onRowClick(item)} key={index} className="text-center">
                                                 <td>{index + 1}</td>
-                                                <td>{item.Email}</td>
-                                                <td>{item.DiaChi}</td>
-                                                <td>{item.SoDienThoai}</td>
+                                                <td>{item.TenSP}</td>
+                                                <td>{item.PhanTram}</td>
+                                                <td>{new Intl.DateTimeFormat('en-US').format(new Date(item.NgayBD))}</td>
+                                                <td>{new Intl.DateTimeFormat('en-US').format(new Date(item.NgayKT))}</td>
                                             </tr>
                                         ))
                                     }
@@ -89,12 +90,12 @@ const LienHe = () => {
                             </table>
                         </div>
                     </div>
-                    <Add />
                     <Update dataEdit={dataEdit} />
+
                 </div>
             </div>
         </div >
     );
 }
 
-export default LienHe;
+export default GiamGia;
