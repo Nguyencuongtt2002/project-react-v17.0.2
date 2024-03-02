@@ -1,6 +1,6 @@
 import {
     FETCH_THUONGHIEU_REQUEST, FETCH_THUONGHIEU_SUCCESS, FETCH_THUONGHIEU_ERROR, CREATE_THUONGHIEU_SUCCESS,
-    UPDATE_THUONGHIEU_SUCCESS
+    UPDATE_THUONGHIEU_SUCCESS, DELETE_THUONGHIEU_SUCCESS
 } from '../actions/thuonghieuAction'
 const INITIAL_STATE = {
 
@@ -37,6 +37,13 @@ const thuonghieuReducer = (state = INITIAL_STATE, action) => {
                     }
                     return item;
                 })
+            };
+        case DELETE_THUONGHIEU_SUCCESS:
+            //console.log(action.data);
+            //console.log("tyu")
+            return {
+                ...state,
+                ListThuongHieu: state.ListThuongHieu.filter(item => item.MaThuongHieu !== action.data.id)
             };
 
         default: return state;

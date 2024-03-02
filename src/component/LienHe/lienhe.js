@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllLH, deleteLH } from "../../redux/actions/lienheAction";
 import Sidebar from "../../layout/sidebar";
+import Add from "./Add";
 import Update from "./update";
 
 const LienHe = () => {
@@ -23,9 +24,13 @@ const LienHe = () => {
         if (!rowSelected) {
             alert("Vui lòng chọn một hàng trước khi cập nhật!");
         } else {
-            dispatch(deleteLH(dataEdit.MaLienHe));
+            const confirmDelete = window.confirm(`Bạn có chắc chắn muốn xóa Email:${dataEdit.Email} không?`);
+            if (confirmDelete) {
+                dispatch(deleteLH(dataEdit.MaLienHe));
+            }
         }
     };
+
 
     const hanleUpdate = () => {
         if (!rowSelected) {
@@ -49,12 +54,9 @@ const LienHe = () => {
                     <div className="content" style={{ width: "1200px" }}>
                         <div className="layout-page-customer">
                             <h3 className="text-center mb-3 font-weight-bold" data-aos="flip-right">Danh sách loại sản phẩm</h3>
-
                             <p className="text-muted font-13 m-b-30">
                                 <button className="btn btn-primary fa fa-plus" data-toggle="modal" data-target="#exampleModal">Tạo mới</button>
-                                <button id="updateButton" className="btn btn-warning btn-sm ml-2"
-                                    onClick={() => hanleUpdate()}
-                                >
+                                <button id="updateButton" className="btn btn-warning btn-sm ml-2" onClick={() => hanleUpdate()}>
                                     <i className="fas fa-edit"></i> Cập nhật
                                 </button>
                                 <button className="btn btn-danger btn-sm ml-2" onClick={handleDelete}>
@@ -87,6 +89,7 @@ const LienHe = () => {
                             </table>
                         </div>
                     </div>
+                    <Add />
                     <Update dataEdit={dataEdit} />
                 </div>
             </div>

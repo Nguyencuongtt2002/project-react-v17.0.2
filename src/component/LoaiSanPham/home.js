@@ -36,6 +36,7 @@ const Home = () => {
                             <p className="text-muted font-13 m-b-30">
                                 <button className="btn btn-primary fa fa-plus" data-toggle="modal" data-target="#exampleModal">Tạo mới</button>
                             </p>
+                            <p>Tổng có :{data.length} loại sản phẩm </p>
                             <table className="table table-striped table-hover">
                                 <thead className="thead-dark">
                                     <tr className="text-center">

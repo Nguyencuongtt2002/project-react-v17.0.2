@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateLoaisp } from "../../redux/actions/loaispAction";
+import { updateLH } from "../../redux/actions/lienheAction";
 const Update = ({ dataEdit }) => {
-    console.log(dataEdit)
+    //console.log(dataEdit)
     const dispatch = useDispatch();
     const [email, setEmail] = useState("");
     const [diaChi, setDiaChi] = useState("");
@@ -16,9 +16,12 @@ const Update = ({ dataEdit }) => {
     }, [dataEdit]);
     const handleEdit = () => {
         const obj = {
-
+            MaLienHe: dataEdit.MaLienHe,
+            Email: email,
+            DiaChi: diaChi,
+            SoDienThoai: soDienThoai
         };
-        dispatch(updateLoaisp(obj));
+        dispatch(updateLH(obj));
     };
 
     return (

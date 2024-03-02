@@ -74,7 +74,8 @@ export const deleteTH = (id) => {
         try {
             let res = await axios.delete(`http://localhost:4000/api/thuong-hieu/xoa/${id}`);
             if (res && res.data) {
-                dispatch({ type: DELETE_THUONGHIEU_SUCCESS });
+                dispatch({ type: DELETE_THUONGHIEU_SUCCESS, data: { id } });
+                console.log("ttf")
                 dispatch(fetchAllThuonghieu());
             }
         } catch (error) {

@@ -29,10 +29,11 @@ const lienheReducer = (state = INITIAL_STATE, action) => {
                 ...state, isCreating: false, ListLienHe: [...state.ListLienHe, action.data]
             };
         case UPDATE_LIENHE_SUCCESS:
+            console.log(action.data)
             return {
                 ...state,
                 ListLienHe: state.ListLienHe.map(item => {
-                    if (item.MaThuongHieu === action.data.MaThuongHieu) {
+                    if (item.MaLienHe === action.data.MaLienHe) {
                         return action.data;
                     }
                     return item;

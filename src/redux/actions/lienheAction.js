@@ -23,7 +23,7 @@ export const fetchAllLH = () => {
 
             // Perform the API request
             const res = await axios.get("http://localhost:4000/api/lien-he/get-all");
-            console.log(res)
+            //console.log(res)
             const data = res && res.data ? res.data : [];
             dispatch({
                 type: FETCH_LIENHE_SUCCESS,
@@ -42,16 +42,16 @@ export const fetchAllLH = () => {
 
 export const createLH = (data) => {
     return async (dispatch, getState) => {
-        dispatch({ type: CREATE_LIENHE_REQUEST });
+        //dispatch({ type: CREATE_LIENHE_REQUEST });
         try {
             let res = await axios.post("http://localhost:4000/api/lien-he/them", data);
             console.log(res);
             if (res && res.data) {
-                dispatch({ type: CREATE_LIENHE_SUCCESS });
+                dispatch({ type: CREATE_LIENHE_SUCCESS, data });
                 dispatch(fetchAllLH());
             }
         } catch (error) {
-            dispatch({ type: CREATE_LIENHE_ERROR, error });
+            // dispatch({ type: CREATE_LIENHE_ERROR, error });
             console.log(error);
         }
     };
@@ -63,7 +63,7 @@ export const updateLH = (data) => {
             let res = await axios.post("http://localhost:4000/api/lien-he/update", data);
             console.log(res.data);
             if (res && res.data) {
-                dispatch({ type: UPDATE_LIENHE_SUCCESS });
+                dispatch({ type: UPDATE_LIENHE_SUCCESS, data });
                 dispatch(fetchAllLH());
             }
         } catch (error) {
